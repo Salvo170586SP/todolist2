@@ -1,28 +1,51 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container" :class="{blue: isActive}" >
+    <div class="row">
+      <div class="col-12 pt-3 text-end">
+        <span class="text-light" @click="changeColor" role="button">
+          <i class="fa-solid fa-circle-half-stroke fa-2x"></i>
+        </span>
+      </div>
+    </div>
+    <Home />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Home from "./components/Home.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    Home,
+  },
+  data() {
+    return {
+      isActive: false,
+    };
+  },
+  methods: {
+    changeColor() {
+      console.log('click');
+
+      if(this.isActive == false) {
+        this.isActive = true;
+      } else {
+        this.isActive = false;
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss">
+@import "./assets/scss/App.scss";
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+      height: 100vh;
 }
+
+#app.blue {
+    background: blue;
+    color: white;
+  }
 </style>
